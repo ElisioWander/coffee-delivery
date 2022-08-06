@@ -22,10 +22,6 @@ export const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme['gray-500']};
   }
 
-  label {
-    color: ${(props) => props.theme['gray-300']};
-  }
-
   body, input, textarea, button {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
