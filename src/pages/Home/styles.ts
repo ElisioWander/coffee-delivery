@@ -6,6 +6,8 @@ export const HomeContainer = styled.div`
 `
 
 export const IntroContainer = styled.main`
+  margin-top: 6.5rem;
+
   display: flex;
   gap: 3.5rem;
   padding: 5.75rem 0;
@@ -117,5 +119,16 @@ export const CoffeeSection = styled.section`
     margin-bottom: 2.125rem;
 
     color: ${(props) => props.theme['gray-500']};
+  }
+`
+
+export const CoffeeCardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+
+  @media (max-width: 658px) {
+    display: flex;
+    flex-direction: column;
   }
 `

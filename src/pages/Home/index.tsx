@@ -1,7 +1,10 @@
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 import { CoffeeCard } from './Components/CoffeeCard'
 
+import coffeeData from '../../../coffee-data.json'
+
 import {
+  CoffeeCardContainer,
   CoffeeItem,
   CoffeeSection,
   HomeContainer,
@@ -63,7 +66,11 @@ export function Home() {
       <CoffeeSection>
         <h1>Nossos Cafés</h1>
 
-        <CoffeeCard />
+        <CoffeeCardContainer>
+          {coffeeData?.map((coffee) => (
+            <CoffeeCard key={coffee.id} coffee={coffee} />
+          ))}
+        </CoffeeCardContainer>
       </CoffeeSection>
     </HomeContainer>
   )

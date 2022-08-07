@@ -1,16 +1,5 @@
 import styled from 'styled-components'
 
-export const CardContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-
-  @media (max-width: 658px) {
-    display: flex;
-    flex-direction: column;
-  }
-`
-
 export const CardContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,20 +7,6 @@ export const CardContent = styled.div`
   justify-content: center;
 
   padding: 1.25rem;
-
-  > span {
-    margin: 1rem 0 1.25rem 0;
-
-    font-size: 0.625rem;
-    font-weight: 700;
-
-    padding: 0.25rem 0.5rem;
-    border: 0;
-    border-radius: 100px;
-
-    color: ${(props) => props.theme['yellow-900']};
-    background-color: ${(props) => props.theme['yellow-100']};
-  }
 
   h2 {
     font-family: 'Baloo 2', sans-serif;
@@ -48,6 +23,25 @@ export const CardContent = styled.div`
     text-align: center;
 
     color: ${(props) => props.theme['gray-300']};
+  }
+`
+
+export const CoffeeType = styled.div`
+  display: flex;
+  gap: 0.25rem;
+
+  > span {
+    margin: 1rem 0 1.25rem 0;
+
+    font-size: 0.625rem;
+    font-weight: 700;
+
+    padding: 0.25rem 0.5rem;
+    border: 0;
+    border-radius: 100px;
+
+    color: ${(props) => props.theme['yellow-900']};
+    background-color: ${(props) => props.theme['yellow-100']};
   }
 `
 

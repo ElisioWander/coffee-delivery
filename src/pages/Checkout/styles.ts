@@ -5,7 +5,7 @@ export const Form = styled.form`
   grid-template-columns: 40rem 1fr;
   gap: 2rem;
 
-  padding: 2.5rem 0;
+  padding: 9rem 0;
 
   @media (max-width: 658px) {
     display: flex;

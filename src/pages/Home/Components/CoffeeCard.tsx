@@ -1,66 +1,105 @@
 import { ShoppingCart, Plus, Minus } from 'phosphor-react'
+import { useState } from 'react'
+import { useCart } from '../../../Context/CartContext'
 
 import {
   AddCoffee,
   CardBuySection,
-  CardContainer,
   CardContent,
   CartItem,
   CoffeeAmount,
+  CoffeeType,
   Price,
 } from './StylesCoffeeCard'
 
-import coffeeImage from '../../../assets/coffee-type/expresso-tradicional.svg'
+type CoffeeData = {
+  id: string
+  image: string
+  type: string[]
+  name: string
+  description: string
+  price: string
+}
 
-export function CoffeeCard() {
+interface CoffeeCardProps {
+  coffee: CoffeeData
+}
+
+export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  const [amountCoffee, setAmountCoffee] = useState(1)
+
+  const { cartItems, addCoffeeToCart, updateCoffeeInCart } = useCart()
+
+  const coffeeAlreadyExists = cartItems.find((item) => item.id === coffee.id)
+
+  function handleAddCoffeeToCart() {
+    if (coffeeAlreadyExists) {
+      const updatedCoffee = {
+        id: coffee.id,
+        amount: amountCoffee,
+      }
+
+      updateCoffeeInCart(updatedCoffee)
+    } else {
+      const coffeeAdded = {
+        id: coffee.id,
+        image: coffee.image,
+        name: coffee.name,
+        amount: amountCoffee,
+        price: coffee.price,
+      }
+
+      addCoffeeToCart(coffeeAdded)
+    }
+  }
+
+  function handleIncrementCoffeeAmount() {
+    setAmountCoffee(amountCoffee + 1)
+  }
+
+  function handleDecrementCoffeeAmount() {
+    if (amountCoffee > 1) {
+      setAmountCoffee(amountCoffee - 1)
+    }
+  }
+
+  const parsedCoffeeType = coffee.type.map((item) => (
+    <span key={item}>{item.split('  ')}</span>
+  ))
+
   return (
-    <CardContainer>
-      <CardContent>
-        <img src={coffeeImage} alt="" />
-        <span>TRADICIONAL</span>
+    <CardContent>
+      <img src={coffee.image} alt="" />
 
-        <h2>Expresso Tradicional</h2>
-        <p>O tradicional café feito com água quente e grãos moídos</p>
+      <CoffeeType>{parsedCoffeeType}</CoffeeType>
 
-        <CardBuySection>
-          <Price>
-            <span>R$</span>9,90
-          </Price>
-          <CoffeeAmount>
-            <AddCoffee>
-              <Minus size={14} weight="bold" />
-              1
-              <Plus size={14} weight="bold" />
-            </AddCoffee>
-            <CartItem>
-              <ShoppingCart size={22} />
-            </CartItem>
-          </CoffeeAmount>
-        </CardBuySection>
-      </CardContent>
-      <CardContent>
-        <img src={coffeeImage} alt="" />
+      <h2>{coffee.name}</h2>
+      <p>{coffee.description}</p>
 
-        <span>TRADICIONAL</span>
-        <h2>Expresso Tradicional</h2>
-        <p>O tradicional café feito com água quente e grãos moídos</p>
-
-        <CardBuySection>
-          <Price>
-            <span>R$</span>9,90
-          </Price>
-          <CoffeeAmount>
-            <AddCoffee>
-              <Minus size={14} weight="bold" />
-              1
-              <Plus size={14} weight="bold" />
-            </AddCoffee>
-            <CartItem>
-              <ShoppingCart size={22} />
-            </CartItem>
-          </CoffeeAmount>
-        </CardBuySection>
-      </CardContent>
-    </CardContainer>
+      <CardBuySection>
+        <Price>
+          <span>R$</span>
+          {coffee.price}
+        </Price>
+        <CoffeeAmount>
+          <AddCoffee>
+            <Minus
+              onClick={handleDecrementCoffeeAmount}
+              size={14}
+              weight="bold"
+            />
+            {amountCoffee}
+            <Plus
+              onClick={handleIncrementCoffeeAmount}
+              size={14}
+              weight="bold"
+            />
+          </AddCoffee>
+          <CartItem>
+            <ShoppingCart onClick={handleAddCoffeeToCart} size={22} />
+          </CartItem>
+        </CoffeeAmount>
+      </CardBuySection>
+    </CardContent>
   )
 }
