@@ -9,12 +9,27 @@ export const IntroContainer = styled.main`
   display: flex;
   gap: 3.5rem;
   padding: 5.75rem 0;
+
+  img {
+    width: 100%;
+    max-width: 29.75rem;
+    height: 22.5rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 2rem 0;
+
+    img {
+      display: none;
+    }
+  }
 `
 
 export const IntroContent = styled.div`
   h1 {
     font-family: 'Baloo 2', sans-serif;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
     line-height: 3.9rem;
   }
@@ -27,6 +42,12 @@ export const IntroContent = styled.div`
 
     color: ${(props) => props.theme['gray-500']};
   }
+
+  @media (max-width: 768px) {
+    h1 {
+      line-height: 3rem;
+    }
+  }
 `
 
 export const IntroGrid = styled.div`
@@ -34,6 +55,11 @@ export const IntroGrid = styled.div`
   grid-template-columns: 1fr 1fr;
 
   margin-top: 4.125rem;
+
+  @media (max-width: 544px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const IntroGridCardBase = styled.div`

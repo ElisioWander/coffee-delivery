@@ -4,6 +4,11 @@ export const CardContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
+
+  @media (max-width: 658px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const CardContent = styled.div`

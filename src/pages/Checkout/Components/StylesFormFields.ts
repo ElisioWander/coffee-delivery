@@ -9,6 +9,8 @@ export const FormFieldsContainer = styled.div`
     font-weight: 700;
     font-size: 1.125rem;
     line-height: 1.4625rem;
+
+    color: ${(props) => props.theme['gray-500']};
   }
 `
 
@@ -29,6 +31,10 @@ export const FormFieldsInputs = styled.div`
   border-radius: 0.375rem;
 
   background-color: ${(props) => props.theme['white-300']};
+
+  @media (max-width: 658px) {
+    padding: 1.5rem;
+  }
 `
 
 export const InputGrup = styled.main`
@@ -66,6 +72,13 @@ export const InputGrup = styled.main`
       }
     }
   }
+
+  @media (max-width: 658px) {
+    input,
+    input:first-child {
+      width: 100%;
+    }
+  }
 `
 
 export const InputGrupFlex = styled.div`
@@ -75,12 +88,22 @@ export const InputGrupFlex = styled.div`
   input:last-child {
     flex: 1;
   }
+
+  @media (max-width: 658px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const InputGrupGrid = styled.div`
   display: grid;
   grid-template-columns: 12.5rem 17.25rem 3.75rem;
   gap: 0.75rem;
+
+  @media (max-width: 658px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 export const PaymentMethodSection = styled.section`
@@ -94,10 +117,19 @@ export const PaymentMethodSection = styled.section`
   border-radius: 0.375rem;
 
   background-color: ${(props) => props.theme['white-300']};
+
+  @media (max-width: 658px) {
+    padding: 1.5rem;
+  }
 `
 
 export const PaymentMethod = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
+
+  @media (max-width: 658px) {
+    display: flex;
+    flex-direction: column;
+  }
 `

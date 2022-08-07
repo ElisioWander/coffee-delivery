@@ -39,6 +39,10 @@ export const Location = styled.span`
   svg {
     color: ${(props) => props.theme['purple-500']};
   }
+
+  @media (max-width: 768px) {
+    visibility: hidden;
+  }
 `
 
 export const Cart = styled.span`
