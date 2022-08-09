@@ -26,7 +26,7 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
-  const [amountCoffee, setAmountCoffee] = useState(1)
+  const [amount, setAmount] = useState(1)
 
   const { cartItems, addCoffeeToCart, updateCoffeeInCart } = useCart()
 
@@ -36,7 +36,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
     if (coffeeAlreadyExists) {
       const updatedCoffee = {
         id: coffee.id,
-        amount: amountCoffee,
+        amount,
       }
 
       updateCoffeeInCart(updatedCoffee)
@@ -45,7 +45,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
         id: coffee.id,
         image: coffee.image,
         name: coffee.name,
-        amount: amountCoffee,
+        amount,
         price: coffee.price,
       }
 
@@ -54,12 +54,12 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
   }
 
   function handleIncrementCoffeeAmount() {
-    setAmountCoffee(amountCoffee + 1)
+    setAmount(amount + 1)
   }
 
   function handleDecrementCoffeeAmount() {
-    if (amountCoffee > 1) {
-      setAmountCoffee(amountCoffee - 1)
+    if (amount > 1) {
+      setAmount(amount - 1)
     }
   }
 
@@ -88,7 +88,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
               size={14}
               weight="bold"
             />
-            {amountCoffee}
+            {amount}
             <Plus
               onClick={handleIncrementCoffeeAmount}
               size={14}

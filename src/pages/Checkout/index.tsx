@@ -1,11 +1,8 @@
-import { Minus, Plus, Trash } from 'phosphor-react'
 import { FormFields } from './Components/FormFields'
 import { useCart } from '../../Context/CartContext'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { CartItem } from './Components/CartItem'
 
 import {
-  AddCoffee,
   CalcTotal,
   CalcTotalItens,
   CalcTotalSection,
@@ -14,26 +11,11 @@ import {
   FinalizeOrderContent,
   Form,
   FinalizeOrderButton,
-  RemoveCoffee,
-  SelectedOrder,
-  SelectedOrderActions,
-  SelectedOrderDetails,
-  SelectedOrderInfos,
-  Price,
 } from './styles'
+import { EmptyCart } from './Components/EmptyCart'
 
 export function Checkout() {
   const { cartItems } = useCart()
-
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (cartItems.length === 0) {
-      navigate('/')
-    }
-
-    window.scroll(0, 0)
-  }, [cartItems, navigate])
 
   return (
     <Form>
@@ -43,31 +25,11 @@ export function Checkout() {
         <span>Cafés selecionados</span>
 
         <FinalizeOrderContent>
-          {cartItems?.map((item) => (
-            <SelectedOrder key={item.id}>
-              <SelectedOrderInfos>
-                <img src={item.image} alt="" />
-
-                <SelectedOrderDetails>
-                  <span>{item.name}</span>
-
-                  <SelectedOrderActions>
-                    <AddCoffee>
-                      <Minus size={14} weight="bold" />
-                      {item.amount}
-                      <Plus size={14} weight="bold" />
-                    </AddCoffee>
-                    <RemoveCoffee>
-                      <Trash size={16} />
-                      Remover
-                    </RemoveCoffee>
-                  </SelectedOrderActions>
-                </SelectedOrderDetails>
-              </SelectedOrderInfos>
-
-              <Price>R$ {item.price}</Price>
-            </SelectedOrder>
-          ))}
+          {cartItems.length !== 0 ? (
+            cartItems.map((cart) => <CartItem key={cart.id} cart={cart} />)
+          ) : (
+            <EmptyCart />
+          )}
 
           <CalcTotalSection>
             <CalcTotalItens>

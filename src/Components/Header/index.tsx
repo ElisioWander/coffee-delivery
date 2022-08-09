@@ -19,16 +19,20 @@ export function Header() {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <img src={logo} alt="" />
+        <NavLink to="/">
+          <img src={logo} alt="" />
+        </NavLink>
         <Actions>
           <Location>
             <MapPin size={22} />
             Juiz de Fora, MG
           </Location>
           {cartItems.length === 0 ? (
-            <Cart>
-              <ShoppingCart size={22} />
-            </Cart>
+            <NavLink to="/checkout">
+              <Cart>
+                <ShoppingCart size={22} />
+              </Cart>
+            </NavLink>
           ) : (
             <NavLink to="/checkout">
               <CartWithItem>
