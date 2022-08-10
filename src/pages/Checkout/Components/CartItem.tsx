@@ -49,6 +49,10 @@ export function CartItem({ cart }: CartItemProps) {
     }
   }
 
+  const coffeePrice = parseInt(cart.price)
+  const coffeeAmount = amount
+  const coffeeTotalPrice = coffeePrice * coffeeAmount
+
   return (
     <SelectedOrder>
       <SelectedOrderInfos>
@@ -82,7 +86,7 @@ export function CartItem({ cart }: CartItemProps) {
         </SelectedOrderDetails>
       </SelectedOrderInfos>
 
-      <Price>R$ {cart.price}</Price>
+      <Price>R$ {coffeeTotalPrice}</Price>
     </SelectedOrder>
   )
 }

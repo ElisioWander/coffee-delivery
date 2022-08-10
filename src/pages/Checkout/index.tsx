@@ -1,6 +1,11 @@
 import { FormFields } from './Components/FormFields'
 import { useCart } from '../../Context/CartContext'
 import { CartItem } from './Components/CartItem'
+import { EmptyCart } from './Components/EmptyCart'
+import { useEffect } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm, FormProvider } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import {
   CalcTotal,
@@ -12,14 +17,62 @@ import {
   Form,
   FinalizeOrderButton,
 } from './styles'
-import { EmptyCart } from './Components/EmptyCart'
+import { useValidation } from '../../hooks/useValidation'
+
+export type FinalizeOrderData = {
+  cep: string
+  street: string
+  number: string
+  complement: string
+  district: string
+  city: string
+  uf: string
+  payment: string
+}
 
 export function Checkout() {
-  const { cartItems } = useCart()
+  const navigate = useNavigate()
+
+  const { cartItems, paymentMethod, getFinalizedOrderData } = useCart()
+  const { finalizeOrderSchemaValidation } = useValidation()
+
+  const finalizeOrderForm = useForm<FinalizeOrderData>({
+    resolver: zodResolver(finalizeOrderSchemaValidation),
+    defaultValues: {
+      cep: '',
+      street: '',
+      number: '',
+      complement: '',
+      district: '',
+      city: '',
+      uf: '',
+      payment: '',
+    },
+  })
+
+  const { handleSubmit } = finalizeOrderForm
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
+
+  async function handleFinalizeOrder(data: FinalizeOrderData) {
+    const orderData = {
+      ...data,
+      uf: data.uf.toUpperCase(),
+      payment: paymentMethod,
+    }
+
+    getFinalizedOrderData(orderData)
+
+    navigate('/success')
+  }
 
   return (
-    <Form>
-      <FormFields />
+    <Form onSubmit={handleSubmit(handleFinalizeOrder)}>
+      <FormProvider {...finalizeOrderForm}>
+        <FormFields />
+      </FormProvider>
 
       <FinalizeOrderContainer>
         <span>Cafés selecionados</span>

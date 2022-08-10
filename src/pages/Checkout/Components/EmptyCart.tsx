@@ -13,10 +13,8 @@ export function EmptyCart() {
         Navegue pelos nossos produtos agora.
       </p>
       <NavLink to="/">
-        <a>
-          Ver produtos
-          <Coffee size={16} weight="bold" />
-        </a>
+        Ver produtos
+        <Coffee size={16} weight="bold" />
       </NavLink>
     </EmptyCartContainer>
   )

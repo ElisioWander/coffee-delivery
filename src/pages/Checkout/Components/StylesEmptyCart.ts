@@ -10,7 +10,6 @@ export const EmptyCartContainer = styled.div`
   padding: 2rem 0;
 
   > svg {
-    transform: rotate(-25deg);
     color: ${(props) => props.theme['yellow-500']};
   }
 

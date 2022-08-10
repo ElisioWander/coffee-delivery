@@ -7,6 +7,9 @@ import {
 } from 'phosphor-react'
 import { FormFieldsTitle } from './FormFieldsTitle'
 import { PaymentButton } from './PaymentButton'
+import { useFormContext } from 'react-hook-form'
+import { FinalizeOrderData } from '../index'
+import { InputForm } from './InputForm'
 
 import {
   FormFieldsContainer,
@@ -19,7 +22,27 @@ import {
   PaymentMethodSection,
 } from './StylesFormFields'
 
+const payment = [
+  {
+    icon: <CreditCard />,
+    type: 'Cartão de crédito',
+  },
+  {
+    icon: <Bank />,
+    type: 'Cartão de débito',
+  },
+  {
+    icon: <Money />,
+    type: 'dinheiro',
+  },
+]
+
 export function FormFields() {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FinalizeOrderData>()
+
   return (
     <FormFieldsContainer>
       <span>Complete seu pedido</span>
@@ -33,16 +56,51 @@ export function FormFields() {
           />
 
           <InputGrup>
-            <input type="text" name="cep" placeholder="CEP" />
-            <input type="text" name="street" placeholder="Rua" />
+            <InputForm
+              type="text"
+              placeholder="CEP"
+              error={errors.cep}
+              {...register('cep')}
+            />
+            <InputForm
+              type="text"
+              placeholder="Rua"
+              error={errors.street}
+              {...register('street')}
+            />
             <InputGrupFlex>
-              <input type="text" name="number" placeholder="Número" />
-              <input type="text" name="complement" placeholder="Complementp" />
+              <InputForm
+                type="text"
+                placeholder="Número"
+                error={errors.number}
+                {...register('number')}
+              />
+              <InputForm
+                type="text"
+                placeholder="Complemento"
+                error={errors.complement}
+                {...register('complement')}
+              />
             </InputGrupFlex>
             <InputGrupGrid>
-              <input type="text" name="district" placeholder="Bairro" />
-              <input type="text" name="city" placeholder="Cidade" />
-              <input type="text" name="uf" placeholder="UF" />
+              <InputForm
+                type="text"
+                placeholder="Bairro"
+                error={errors.district}
+                {...register('district')}
+              />
+              <InputForm
+                type="text"
+                placeholder="Cidade"
+                error={errors.city}
+                {...register('city')}
+              />
+              <InputForm
+                type="text"
+                placeholder="UF"
+                error={errors.uf}
+                {...register('uf')}
+              />
             </InputGrupGrid>
           </InputGrup>
         </FormFieldsInputs>
@@ -55,9 +113,13 @@ export function FormFields() {
           />
 
           <PaymentMethod>
-            <PaymentButton icon={<CreditCard />} name="Cartão de crédito" />
-            <PaymentButton icon={<Bank />} name="Cartão de débito" />
-            <PaymentButton icon={<Money />} name="Dinheiro" />
+            {payment.map((method) => (
+              <PaymentButton
+                key={method.type}
+                icon={method.icon}
+                payment={method.type}
+              />
+            ))}
           </PaymentMethod>
         </PaymentMethodSection>
       </FormFieldsContent>

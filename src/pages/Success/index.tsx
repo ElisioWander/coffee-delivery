@@ -1,4 +1,5 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useCart } from '../../Context/CartContext'
 
 import {
   DeliveryDestination,
@@ -8,9 +9,12 @@ import {
   SuccessContent,
   SuccessInfos,
 } from './Styles'
+
 import deliveryMotorcycleImg from '../../assets/delivery-motorcycle.svg'
 
 export function Success() {
+  const { finalizedOrder } = useCart()
+
   return (
     <SuccessContainer>
       <SuccessContent>
@@ -23,9 +27,14 @@ export function Success() {
               <MapPin size={16} weight="bold" />
             </header>
             <p>
-              Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
-              <br />
-              Farrapos - Porto Alegre, RS
+              Entrega em{' '}
+              <span>
+                <strong>{finalizedOrder.street}</strong>,{' '}
+                {finalizedOrder.number}
+                <br />
+                {finalizedOrder.district} - {finalizedOrder.city},{' '}
+                {finalizedOrder.uf}
+              </span>
             </p>
           </DeliveryDestination>
           <DeliveryTimer>
@@ -47,7 +56,7 @@ export function Success() {
             <p>
               Pagamento na entrega
               <br />
-              <strong>Cartão de Crédito</strong>
+              <strong>{finalizedOrder.payment}</strong>
             </p>
           </DeliveryPayment>
         </SuccessInfos>

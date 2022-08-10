@@ -7,6 +7,16 @@ export const CardContent = styled.div`
   justify-content: center;
 
   padding: 1.25rem;
+  border-radius: 0.375rem 2.25rem;
+
+  background-color: ${(props) => props.theme['white-300']};
+
+  > img {
+    width: 7.75rem;
+    height: 7.75rem;
+
+    margin-top: -40px;
+  }
 
   h2 {
     font-family: 'Baloo 2', sans-serif;

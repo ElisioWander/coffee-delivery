@@ -116,7 +116,7 @@ export const CoffeeSection = styled.section`
     font-weight: 800;
     line-height: 2.6rem;
 
-    margin-bottom: 2.125rem;
+    margin-bottom: 3.375rem;
 
     color: ${(props) => props.theme['gray-500']};
   }

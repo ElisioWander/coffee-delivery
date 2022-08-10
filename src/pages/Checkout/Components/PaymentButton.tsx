@@ -1,16 +1,26 @@
 import { ReactNode } from 'react'
+import { useCart } from '../../../Context/CartContext'
 import { Button } from './StylesPaymentButton'
 
 interface PaymentButtonProps {
   icon: ReactNode
-  name: string
+  payment: string
 }
 
-export function PaymentButton({ icon, name }: PaymentButtonProps) {
+export function PaymentButton({ icon, payment }: PaymentButtonProps) {
+  const { getSelectedPaymentMethod } = useCart()
+
+  function handleGetSelectedPaymentMethod(payment: string) {
+    getSelectedPaymentMethod(payment)
+  }
+
   return (
-    <Button type="button">
+    <Button
+      onClick={() => handleGetSelectedPaymentMethod(payment)}
+      type="button"
+    >
       {icon}
-      {name}
+      {payment}
     </Button>
   )
 }

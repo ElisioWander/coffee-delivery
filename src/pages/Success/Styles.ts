@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 export const SuccessContainer = styled.div`
-  height: calc(100vh - 6.5rem);
+  height: 100vh;
+
+  padding-top: 5rem;
 
   display: flex;
   align-items: center;
@@ -86,6 +88,10 @@ export const DeliverySectionBase = styled.div`
 export const DeliveryDestination = styled(DeliverySectionBase)`
   header {
     background-color: ${(props) => props.theme['purple-500']};
+  }
+
+  span {
+    text-transform: capitalize;
   }
 `
 

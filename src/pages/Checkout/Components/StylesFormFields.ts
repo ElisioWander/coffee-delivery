@@ -42,37 +42,6 @@ export const InputGrup = styled.main`
   flex-direction: column;
   gap: 1rem;
 
-  input:first-child {
-    width: 12.5rem;
-  }
-
-  input {
-    padding: 0.75rem;
-
-    font-size: 0.875rem;
-
-    border: none;
-    border: 1px solid ${(props) => props.theme['white-500']};
-    border-radius: 0.25rem;
-
-    color: ${(props) => props.theme['gray-400']};
-
-    background-color: ${(props) => props.theme['white-400']};
-
-    &::placeholder {
-      color: ${(props) => props.theme['gray-300']};
-    }
-
-    :focus {
-      outline: 0;
-      border: 1px solid ${(props) => props.theme['yellow-900']};
-
-      &::placeholder {
-        color: transparent;
-      }
-    }
-  }
-
   @media (max-width: 658px) {
     input,
     input:first-child {
@@ -85,7 +54,7 @@ export const InputGrupFlex = styled.div`
   display: flex;
   gap: 0.75rem;
 
-  input:last-child {
+  div:last-child {
     flex: 1;
   }
 
