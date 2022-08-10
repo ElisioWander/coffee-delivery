@@ -16,7 +16,8 @@ type CartData = {
   image: string
   name: string
   amount: number
-  price: string
+  price: number
+  totalPrice: number
 }
 
 interface CartItemProps {
@@ -28,6 +29,11 @@ export function CartItem({ cart }: CartItemProps) {
 
   const { deleteCoffeeFromCart, updateCoffeeInCart } = useCart()
 
+  const priceFormatted = cart.totalPrice.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })
+
   function handleDeleteCoffeeFromCart(coffeeId: string) {
     deleteCoffeeFromCart(coffeeId)
   }
@@ -35,23 +41,32 @@ export function CartItem({ cart }: CartItemProps) {
   function handleIncrementCoffeeAmount() {
     setAmount(amount + 1)
 
-    const updateAmount = {
+    const newPrice = cart.totalPrice + cart.price
+
+    const updateCartItem = {
       id: cart.id,
       amount,
+      totalPrice: newPrice,
     }
 
-    updateCoffeeInCart(updateAmount)
+    updateCoffeeInCart(updateCartItem)
   }
 
   function handleDecrementCoffeeAmount() {
     if (amount > 1) {
       setAmount(amount - 1)
+
+      const newPrice = cart.totalPrice - cart.price
+
+      const updateCartItem = {
+        id: cart.id,
+        amount,
+        totalPrice: newPrice,
+      }
+
+      updateCoffeeInCart(updateCartItem)
     }
   }
-
-  const coffeePrice = parseInt(cart.price)
-  const coffeeAmount = amount
-  const coffeeTotalPrice = coffeePrice * coffeeAmount
 
   return (
     <SelectedOrder>
@@ -86,7 +101,7 @@ export function CartItem({ cart }: CartItemProps) {
         </SelectedOrderDetails>
       </SelectedOrderInfos>
 
-      <Price>R$ {coffeeTotalPrice}</Price>
+      <Price>{priceFormatted}</Price>
     </SelectedOrder>
   )
 }

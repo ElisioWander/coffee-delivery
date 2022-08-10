@@ -1,31 +1,22 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { FinalizeOrderData } from '../pages/Checkout'
-import coffeeData from '../../coffee-data.json'
-
-type CoffeeData = {
-  id: string
-  image: string
-  type: string[]
-  name: string
-  description: string
-  price: string
-}
 
 type CardItemsData = {
   id: string
   image: string
   name: string
   amount: number
-  price: string
+  price: number
+  totalPrice: number
 }
 
 type UpdatedCoffee = {
   id: string
   amount: number
+  totalPrice: number
 }
 
 type CartContextData = {
-  coffees: CoffeeData[]
   cartItems: CardItemsData[]
   finalizedOrder: FinalizeOrderData
   paymentMethod: string
@@ -47,19 +38,19 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const [finalizedOrder, setFinalizedOrder] = useState({} as FinalizeOrderData)
   const [paymentMethod, setPaymentMethod] = useState('')
 
-  const coffees = coffeeData
-
   function addCoffeeToCart(coffeeAdded: CardItemsData) {
+    console.log(coffeeAdded)
+
     setCartItems((state) => [...state, coffeeAdded])
   }
 
   function updateCoffeeInCart(updatedCoffee: UpdatedCoffee) {
-    const { amount, id } = updatedCoffee
+    const { amount, id, totalPrice } = updatedCoffee
 
     setCartItems((state) =>
       state.map((coffee) => {
         if (coffee.id === id) {
-          return { ...coffee, amount }
+          return { ...coffee, amount, totalPrice }
         } else {
           return coffee
         }
@@ -84,7 +75,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   return (
     <CartContext.Provider
       value={{
-        coffees,
         cartItems,
         finalizedOrder,
         paymentMethod,

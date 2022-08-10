@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { useValidation } from '../../hooks/useValidation'
 
 import {
   CalcTotal,
@@ -17,7 +18,6 @@ import {
   Form,
   FinalizeOrderButton,
 } from './styles'
-import { useValidation } from '../../hooks/useValidation'
 
 export type FinalizeOrderData = {
   cep: string

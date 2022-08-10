@@ -18,7 +18,7 @@ type CoffeeData = {
   type: string[]
   name: string
   description: string
-  price: string
+  price: number
 }
 
 interface CoffeeCardProps {
@@ -32,11 +32,21 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
 
   const coffeeAlreadyExists = cartItems.find((item) => item.id === coffee.id)
 
+  const coffeePrice = coffee.price
+  const coffeeTotalPrice = coffeePrice * amount
+
+  const priceFormatted = coffeePrice.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  })
+
   function handleAddCoffeeToCart() {
     if (coffeeAlreadyExists) {
       const updatedCoffee = {
         id: coffee.id,
         amount,
+        price: coffee.price,
+        totalPrice: coffeeTotalPrice,
       }
 
       updateCoffeeInCart(updatedCoffee)
@@ -47,6 +57,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
         name: coffee.name,
         amount,
         price: coffee.price,
+        totalPrice: coffeeTotalPrice,
       }
 
       addCoffeeToCart(coffeeAdded)
@@ -77,10 +88,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
       <p>{coffee.description}</p>
 
       <CardBuySection>
-        <Price>
-          <span>R$</span>
-          {coffee.price}
-        </Price>
+        <Price>{priceFormatted}</Price>
         <CoffeeAmount>
           <AddCoffee>
             <Minus
