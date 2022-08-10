@@ -4,6 +4,7 @@ export const HeaderContainer = styled.div`
   width: 100%;
 
   padding: 2rem 1.5rem;
+  border-bottom: 2px solid ${(props) => props.theme['white-300']};
 
   position: fixed;
   left: 0;

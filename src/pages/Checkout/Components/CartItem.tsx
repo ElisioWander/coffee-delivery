@@ -1,6 +1,7 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
 import { useState } from 'react'
 import { useCart } from '../../../Context/CartContext'
+import { useFormatter } from '../../../hooks/useFormatter'
 import {
   AddCoffee,
   Price,
@@ -28,11 +29,7 @@ export function CartItem({ cart }: CartItemProps) {
   const [amount, setAmount] = useState(cart.amount)
 
   const { deleteCoffeeFromCart, updateCoffeeInCart } = useCart()
-
-  const priceFormatted = cart.totalPrice.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  })
+  const { currencyFormatted: priceFormatted } = useFormatter(cart.totalPrice)
 
   function handleDeleteCoffeeFromCart(coffeeId: string) {
     deleteCoffeeFromCart(coffeeId)

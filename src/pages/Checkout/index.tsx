@@ -18,6 +18,7 @@ import {
   Form,
   FinalizeOrderButton,
 } from './styles'
+import { useFormatter } from '../../hooks/useFormatter'
 
 export type FinalizeOrderData = {
   cep: string
@@ -33,8 +34,28 @@ export type FinalizeOrderData = {
 export function Checkout() {
   const navigate = useNavigate()
 
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
+
   const { cartItems, paymentMethod, getFinalizedOrderData } = useCart()
   const { finalizeOrderSchemaValidation } = useValidation()
+
+  const arrayTotalPriceOfItems = cartItems.map((item) => item.totalPrice)
+
+  const totalPriceOfItems = arrayTotalPriceOfItems
+    ? arrayTotalPriceOfItems.reduce((acc, item) => {
+        return acc + item
+      }, 0)
+    : 1
+
+  const shipping = 4.8
+  const total = totalPriceOfItems + shipping
+
+  const { currencyFormatted: shippingFormatted } = useFormatter(shipping)
+  const { currencyFormatted: totalFormatted } = useFormatter(total)
+
+  const isCartItemEmpty = cartItems.length === 0
 
   const finalizeOrderForm = useForm<FinalizeOrderData>({
     resolver: zodResolver(finalizeOrderSchemaValidation),
@@ -52,10 +73,6 @@ export function Checkout() {
 
   const { handleSubmit } = finalizeOrderForm
 
-  useEffect(() => {
-    window.scroll(0, 0)
-  }, [])
-
   async function handleFinalizeOrder(data: FinalizeOrderData) {
     const orderData = {
       ...data,
@@ -63,9 +80,11 @@ export function Checkout() {
       payment: paymentMethod,
     }
 
-    getFinalizedOrderData(orderData)
+    setTimeout(() => {
+      getFinalizedOrderData(orderData)
 
-    navigate('/success')
+      navigate('/success')
+    }, 2000)
   }
 
   return (
@@ -87,19 +106,19 @@ export function Checkout() {
           <CalcTotalSection>
             <CalcTotalItens>
               <span>Total de itens</span>
-              <span>R$ 29,27</span>
+              <span>{cartItems.length}</span>
             </CalcTotalItens>
             <CalcTotalShipping>
               <span>Entrega</span>
-              <span>R$ 3,50</span>
+              <span>{!isCartItemEmpty ? shippingFormatted : '0'}</span>
             </CalcTotalShipping>
             <CalcTotal>
               <span>Total</span>
-              <span>R$ 33,20</span>
+              <span>{!isCartItemEmpty ? totalFormatted : '0'}</span>
             </CalcTotal>
           </CalcTotalSection>
 
-          <FinalizeOrderButton type="submit">
+          <FinalizeOrderButton type="submit" disabled={isCartItemEmpty}>
             Confirmar Pedido
           </FinalizeOrderButton>
         </FinalizeOrderContent>

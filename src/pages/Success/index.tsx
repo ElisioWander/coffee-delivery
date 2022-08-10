@@ -1,5 +1,7 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
 import { useCart } from '../../Context/CartContext'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import {
   DeliveryDestination,
@@ -14,6 +16,13 @@ import deliveryMotorcycleImg from '../../assets/delivery-motorcycle.svg'
 
 export function Success() {
   const { finalizedOrder } = useCart()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!finalizedOrder.cep) {
+      navigate('/')
+    }
+  }, [finalizedOrder, navigate])
 
   return (
     <SuccessContainer>

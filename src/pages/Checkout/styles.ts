@@ -99,4 +99,9 @@ export const FinalizeOrderButton = styled.button`
     box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-500']};
     border: 2px solid ${(props) => props.theme['white-300']};
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${(props) => props.theme['yellow-900']};
+  }
 `

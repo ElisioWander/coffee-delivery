@@ -33,7 +33,7 @@ const payment = [
   },
   {
     icon: <Money />,
-    type: 'dinheiro',
+    type: 'Dinheiro',
   },
 ]
 

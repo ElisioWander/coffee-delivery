@@ -23,8 +23,8 @@ type CartContextData = {
   addCoffeeToCart: (coffeeAdded: CardItemsData) => void
   updateCoffeeInCart: (updatedCoffee: UpdatedCoffee) => void
   deleteCoffeeFromCart: (deletedCoffeeId: string) => void
-  getFinalizedOrderData: (data: FinalizeOrderData) => void
   getSelectedPaymentMethod: (payment: string) => void
+  getFinalizedOrderData: (data: FinalizeOrderData) => void
 }
 
 interface CartContextProviderProps {
@@ -35,12 +35,10 @@ const CartContext = createContext({} as CartContextData)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cartItems, setCartItems] = useState<CardItemsData[]>([])
-  const [finalizedOrder, setFinalizedOrder] = useState({} as FinalizeOrderData)
   const [paymentMethod, setPaymentMethod] = useState('')
+  const [finalizedOrder, setFinalizedOrder] = useState({} as FinalizeOrderData)
 
   function addCoffeeToCart(coffeeAdded: CardItemsData) {
-    console.log(coffeeAdded)
-
     setCartItems((state) => [...state, coffeeAdded])
   }
 
@@ -64,25 +62,26 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     )
   }
 
-  function getFinalizedOrderData(data: FinalizeOrderData) {
-    setFinalizedOrder(data)
-  }
-
   function getSelectedPaymentMethod(payment: string) {
     setPaymentMethod(payment)
+  }
+
+  function getFinalizedOrderData(data: FinalizeOrderData) {
+    setFinalizedOrder(data)
+    setCartItems([])
   }
 
   return (
     <CartContext.Provider
       value={{
         cartItems,
-        finalizedOrder,
         paymentMethod,
+        finalizedOrder,
         addCoffeeToCart,
         updateCoffeeInCart,
         deleteCoffeeFromCart,
-        getFinalizedOrderData,
         getSelectedPaymentMethod,
+        getFinalizedOrderData,
       }}
     >
       {children}
