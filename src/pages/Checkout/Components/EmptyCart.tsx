@@ -7,7 +7,6 @@ export function EmptyCart() {
   return (
     <EmptyCartContainer>
       <ShoppingCart size={42} />
-
       <p>
         Seu Carrinho de compras se encontra vazio. <br />
         Navegue pelos nossos produtos agora.

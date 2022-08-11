@@ -7,6 +7,28 @@ export const GlobalStyles = createGlobalStyle`
       box-sizing: border-box;
   }
 
+  @keyframes go-back {
+    0% {
+      transform: translateX(150px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes go-ahead {
+    0% {
+      transform: translateX(-150px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
   body {
     background-color: ${(props) => props.theme['white-200']};
     color: ${(props) => props.theme['gray-400']};

@@ -9,6 +9,8 @@ export const HeaderContainer = styled.div`
   position: fixed;
   left: 0;
 
+  z-index: 1;
+
   background-color: ${(props) => props.theme['white-200']};
 `
 

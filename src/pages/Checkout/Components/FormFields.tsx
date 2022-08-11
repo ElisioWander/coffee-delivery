@@ -22,6 +22,7 @@ import {
   PaymentMethodSection,
 } from './StylesFormFields'
 
+// todas as formas de pagamento do café
 const payment = [
   {
     icon: <CreditCard />,

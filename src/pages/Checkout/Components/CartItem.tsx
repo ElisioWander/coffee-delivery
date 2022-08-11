@@ -26,9 +26,12 @@ interface CartItemProps {
 }
 
 export function CartItem({ cart }: CartItemProps) {
+  // quantidade de café do mesmo tipo
   const [amount, setAmount] = useState(cart.amount)
 
   const { deleteCoffeeFromCart, updateCoffeeInCart } = useCart()
+
+  // formatando o preço total relacionado a quantidade de café do mesmo tipo
   const { currencyFormatted: priceFormatted } = useFormatter(cart.totalPrice)
 
   function handleDeleteCoffeeFromCart(coffeeId: string) {
@@ -38,6 +41,7 @@ export function CartItem({ cart }: CartItemProps) {
   function handleIncrementCoffeeAmount() {
     setAmount(amount + 1)
 
+    // atualizando o preço total do café de acordo com a quantidade
     const newPrice = cart.totalPrice + cart.price
 
     const updateCartItem = {
@@ -53,6 +57,7 @@ export function CartItem({ cart }: CartItemProps) {
     if (amount > 1) {
       setAmount(amount - 1)
 
+      // atualizando o preço total do café de acordo com a quantidade
       const newPrice = cart.totalPrice - cart.price
 
       const updateCartItem = {

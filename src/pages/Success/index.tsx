@@ -19,6 +19,7 @@ export function Success() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    // impedindo o acesso a pagina de sucesso se nenhum pedido tiver sido finalizado
     if (!finalizedOrder.cep) {
       navigate('/')
     }

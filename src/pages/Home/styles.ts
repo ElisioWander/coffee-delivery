@@ -16,19 +16,26 @@ export const IntroContainer = styled.main`
     width: 100%;
     max-width: 29.75rem;
     height: 22.5rem;
+
+    animation: go-back 1s;
   }
 
   @media (max-width: 768px) {
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     padding: 2rem 0;
 
     img {
-      display: none;
+      animation: none;
     }
   }
 `
 
 export const IntroContent = styled.div`
+  animation: go-ahead 1s;
+
   h1 {
     font-family: 'Baloo 2', sans-serif;
     font-size: 2.5rem;
@@ -46,8 +53,13 @@ export const IntroContent = styled.div`
   }
 
   @media (max-width: 768px) {
-    h1 {
+    order: 2;
+    animation: none;
+
+    h1,
+    p {
       line-height: 3rem;
+      text-align: center;
     }
   }
 `

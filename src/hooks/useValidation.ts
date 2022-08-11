@@ -1,5 +1,6 @@
 import * as zod from 'zod'
 
+// esquema de validação utilizado para validar os campos do formulário de compra do café
 export function useValidation() {
   const finalizeOrderSchemaValidation = zod.object({
     cep: zod

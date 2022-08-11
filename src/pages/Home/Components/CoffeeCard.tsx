@@ -1,6 +1,7 @@
 import { ShoppingCart, Plus, Minus } from 'phosphor-react'
 import { useState } from 'react'
 import { useCart } from '../../../Context/CartContext'
+import { useFormatter } from '../../../hooks/useFormatter'
 
 import {
   AddCoffee,
@@ -26,22 +27,26 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  // estado inicial da quantidade de café do mesmo tipo
   const [amount, setAmount] = useState(1)
 
   const { cartItems, addCoffeeToCart, updateCoffeeInCart } = useCart()
 
+  // buscando no array que armazena todos os itens que foram selecionados
+  // para verificar se o item que será adicionado já existe ou não
   const coffeeAlreadyExists = cartItems.find((item) => item.id === coffee.id)
 
+  // preço de unidade * quantidade = preço total
   const coffeePrice = coffee.price
   const coffeeTotalPrice = coffeePrice * amount
 
-  const priceFormatted = coffeePrice.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  })
+  // formatando o preço de unidade para reais R$
+  const { currencyFormatted: priceFormatted } = useFormatter(coffeePrice)
 
   function handleAddCoffeeToCart() {
     if (coffeeAlreadyExists) {
+      // se o item já existir no carrinho de comprar então ele apenas
+      // será atualizado passando valores novos que podem ser alterados
       const updatedCoffee = {
         id: coffee.id,
         amount,
@@ -51,6 +56,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
 
       updateCoffeeInCart(updatedCoffee)
     } else {
+      // enviar o item selecionado para o carrinho
       const coffeeAdded = {
         id: coffee.id,
         image: coffee.image,
@@ -103,8 +109,8 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
               weight="bold"
             />
           </AddCoffee>
-          <CartItem>
-            <ShoppingCart onClick={handleAddCoffeeToCart} size={22} />
+          <CartItem onClick={handleAddCoffeeToCart}>
+            <ShoppingCart size={22} />
           </CartItem>
         </CoffeeAmount>
       </CardBuySection>
