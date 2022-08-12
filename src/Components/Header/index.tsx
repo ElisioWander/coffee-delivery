@@ -24,19 +24,19 @@ export function Header() {
         </NavLink>
         <Actions>
           <Location>
-            <MapPin size={22} />
+            <MapPin weight="fill" size={22} />
             Belo Horizonte, MG
           </Location>
           {cartItems.length === 0 ? (
             <NavLink to="/checkout">
               <Cart>
-                <ShoppingCart size={22} />
+                <ShoppingCart weight="fill" size={22} />
               </Cart>
             </NavLink>
           ) : (
             <NavLink to="/checkout">
               <CartWithItem>
-                <ShoppingCart size={22} />
+                <ShoppingCart weight="fill" size={22} />
                 <span>{cartItems.length}</span>
               </CartWithItem>
             </NavLink>

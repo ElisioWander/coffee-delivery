@@ -37,13 +37,19 @@ export const SuccessContent = styled.div`
 `
 
 export const SuccessInfos = styled.main`
+  width: 27.125rem;
+  height: 16.875rem;
+
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
   padding: 2.5rem;
+
   margin: 1px;
   border-radius: 6px 32px;
+
+  margin-left: auto;
 
   position: relative;
 
@@ -64,6 +70,10 @@ export const SuccessInfos = styled.main`
     z-index: -1;
 
     background-image: linear-gradient(95deg, #dbac2c, #8047f8);
+  }
+
+  @media (max-width: 448px) {
+    width: 100%;
   }
 `
 export const DeliverySectionBase = styled.div`

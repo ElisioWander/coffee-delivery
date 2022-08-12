@@ -110,7 +110,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
             />
           </AddCoffee>
           <CartItem onClick={handleAddCoffeeToCart}>
-            <ShoppingCart size={22} />
+            <ShoppingCart size={22} weight="fill" />
           </CartItem>
         </CoffeeAmount>
       </CardBuySection>

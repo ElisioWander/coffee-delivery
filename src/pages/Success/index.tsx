@@ -34,7 +34,7 @@ export function Success() {
         <SuccessInfos>
           <DeliveryDestination>
             <header>
-              <MapPin size={16} weight="bold" />
+              <MapPin size={16} weight="fill" />
             </header>
             <p>
               Entrega em{' '}
@@ -49,7 +49,7 @@ export function Success() {
           </DeliveryDestination>
           <DeliveryTimer>
             <header>
-              <Timer size={16} weight="bold" />
+              <Timer size={16} weight="fill" />
             </header>
 
             <p>
@@ -60,7 +60,7 @@ export function Success() {
           </DeliveryTimer>
           <DeliveryPayment>
             <header>
-              <CurrencyDollar size={16} weight="bold" />
+              <CurrencyDollar size={16} weight="fill" />
             </header>
 
             <p>

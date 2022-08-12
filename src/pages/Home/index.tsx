@@ -34,25 +34,25 @@ export function Home() {
           <IntroGrid>
             <ShoppingCartItem>
               <span>
-                <ShoppingCart />
+                <ShoppingCart weight="fill" />
               </span>
               Compra simples e segura
             </ShoppingCartItem>
             <PackageItem>
               <span>
-                <Package />
+                <Package weight="fill" />
               </span>
               Embalagem mantém o café intacto
             </PackageItem>
             <TimerItem>
               <span>
-                <Timer />
+                <Timer weight="fill" />
               </span>
               Entrega rápida e rastreada
             </TimerItem>
             <CoffeeItem>
               <span>
-                <Coffee />
+                <Coffee weight="fill" />
               </span>
               O café chega fresquinho até você
             </CoffeeItem>
