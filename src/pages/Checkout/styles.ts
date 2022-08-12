@@ -37,6 +37,7 @@ export const FinalizeOrderContent = styled.div`
   gap: 1.5rem;
 
   padding: 2.5rem;
+  border-radius: 0.375rem 2.75rem;
 
   background-color: ${(props) => props.theme['white-300']};
 

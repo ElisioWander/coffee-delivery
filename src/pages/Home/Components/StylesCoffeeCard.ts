@@ -45,6 +45,7 @@ export const CoffeeType = styled.div`
 
     font-size: 0.625rem;
     font-weight: 700;
+    text-transform: uppercase;
 
     padding: 0.25rem 0.5rem;
     border: 0;

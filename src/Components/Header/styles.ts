@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div`
 
 export const HeaderContent = styled.nav`
   width: 100%;
-  max-width: 67rem;
+  max-width: 73rem;
   margin: 0 auto;
 
   display: flex;
