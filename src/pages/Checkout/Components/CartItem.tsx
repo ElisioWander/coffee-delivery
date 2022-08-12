@@ -32,7 +32,7 @@ export function CartItem({ cart }: CartItemProps) {
   const { deleteCoffeeFromCart, updateCoffeeInCart } = useCart()
 
   // formatando o preço total relacionado a quantidade de café do mesmo tipo
-  const { currencyFormatted: priceFormatted } = useFormatter(cart.totalPrice)
+  const { currency: priceFormatted } = useFormatter(cart.totalPrice)
 
   function handleDeleteCoffeeFromCart(coffeeId: string) {
     deleteCoffeeFromCart(coffeeId)
