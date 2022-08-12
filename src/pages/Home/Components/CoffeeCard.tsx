@@ -75,9 +75,9 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
   }
 
   function handleDecrementCoffeeAmount() {
-    // if (amount > 1) {
-    //   setAmount(amount - 1)
-    // }
+    if (amount > 1) {
+      setAmount(amount - 1)
+    }
   }
 
   const parsedCoffeeType = coffee.type.map((item) => (
