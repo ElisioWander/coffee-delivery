@@ -6,6 +6,12 @@ export const SelectedOrder = styled.div`
 
   padding: 0.5rem 0.25rem 1.5rem 0.25rem;
   border-bottom: 1px solid ${(props) => props.theme['white-500']};
+
+  @media (max-width: 396px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
 `
 
 export const SelectedOrderInfos = styled.div`
@@ -104,4 +110,10 @@ export const RemoveCoffee = styled.button`
 export const Price = styled.span`
   font-weight: 700;
   line-height: 1.3rem;
+
+  @media (max-width: 396px) {
+    width: 100%;
+    display: block;
+    text-align: end;
+  }
 `

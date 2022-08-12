@@ -8,7 +8,7 @@ export const Form = styled.form`
   padding: 9rem 0;
 
   @media (max-width: 1136px) {
-    width: 85%;
+    max-width: 40rem;
 
     display: flex;
     flex-direction: column;
@@ -39,6 +39,10 @@ export const FinalizeOrderContent = styled.div`
   padding: 2.5rem;
 
   background-color: ${(props) => props.theme['white-300']};
+
+  @media (max-width: 396px) {
+    padding: 1rem;
+  }
 `
 
 export const CalcTotalSection = styled.div`
