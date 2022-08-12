@@ -1,7 +1,7 @@
 export default [
   {
     id: '1',
-    image: './src/assets/expresso-tradicional.svg',
+    image: 'images/expresso-tradicional.svg',
     type: ['tradicional'],
     name: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
@@ -9,7 +9,7 @@ export default [
   },
   {
     id: '2',
-    image: './src/assets/expresso-americano.svg',
+    image: 'images/expresso-americano.svg',
     type: ['tradicional'],
     name: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
@@ -17,7 +17,7 @@ export default [
   },
   {
     id: '3',
-    image: './src/assets/expresso-cremoso.svg',
+    image: 'images/expresso-cremoso.svg',
     type: ['tradicional'],
     name: 'Expresso Cremoso',
     description: 'Café expresso tradicional com espuma cremosa',
@@ -25,7 +25,7 @@ export default [
   },
   {
     id: '4',
-    image: './src/assets/expresso-gelado.svg',
+    image: 'images/expresso-gelado.svg',
     type: ['tradicional', 'gelado'],
     name: 'Expresso Gelado',
     description: 'Bebida preparada com café expresso e cubos de gelo',
@@ -33,7 +33,7 @@ export default [
   },
   {
     id: '5',
-    image: './src/assets/cafe-com-leite.svg',
+    image: 'images/cafe-com-leite.svg',
     type: ['tradicional', 'com leite'],
     name: 'Café com Leite',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
@@ -41,7 +41,7 @@ export default [
   },
   {
     id: '6',
-    image: './src/assets/latte.svg',
+    image: 'images/latte.svg',
     type: ['tradicional', 'com leite'],
     name: 'Latte',
     description:
@@ -50,7 +50,7 @@ export default [
   },
   {
     id: '7',
-    image: './src/assets/capuccino.svg',
+    image: 'images/capuccino.svg',
     type: ['tradicional', 'com leite'],
     name: 'Capuccino',
     description:
@@ -59,7 +59,7 @@ export default [
   },
   {
     id: '8',
-    image: './src/assets/macchiato.svg',
+    image: 'images/macchiato.svg',
     type: ['tradicional', 'com leite'],
     name: 'Macchiato',
     description:
@@ -68,7 +68,7 @@ export default [
   },
   {
     id: '9',
-    image: './src/assets/mocaccino.svg',
+    image: 'images/mocaccino.svg',
     type: ['tradicional', 'com leite'],
     name: 'Mocaccino',
     description: 'Café expresso com calda de chocolate, pouco leite e espuma',
@@ -76,7 +76,7 @@ export default [
   },
   {
     id: '10',
-    image: './src/assets/chocolate-quente.svg',
+    image: 'images/chocolate-quente.svg',
     type: ['especial', 'com leite'],
     name: 'Chocolate Quente',
     description: 'Bebida feita com chocolate dissolvido no leite quente e café',
@@ -84,7 +84,7 @@ export default [
   },
   {
     id: '11',
-    image: './src/assets/cubano.svg',
+    image: 'images/cubano.svg',
     type: ['especial', 'alcoólico', 'gelado'],
     name: 'Cubano',
     description:
@@ -93,7 +93,7 @@ export default [
   },
   {
     id: '12',
-    image: './src/assets/havaiano.svg',
+    image: 'images/havaiano.svg',
     type: ['especial'],
     name: 'Havaiano',
     description: 'Bebida adocicada preparada com café e leite de cocoa',
@@ -101,7 +101,7 @@ export default [
   },
   {
     id: '13',
-    image: './src/assets/arabe.svg',
+    image: 'images/arabe.svg',
     type: ['especial'],
     name: 'Árabe',
     description: 'Bebida preparada com grãos de café árabe e especiarias',
@@ -109,7 +109,7 @@ export default [
   },
   {
     id: '14',
-    image: './src/assets/irlandes.svg',
+    image: 'images/irlandes.svg',
     type: ['especial', 'alcoólico'],
     name: 'Irlandês',
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
