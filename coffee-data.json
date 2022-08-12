@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "image": "./src/assets/expresso-americano.svg",
+    "image": "./src/assets/expresso-tradicional.svg",
     "type": ["tradicional"],
     "name": "Expresso Tradicional",
     "description": "O tradicional café feito com água quente e grãos moídos",
@@ -9,7 +9,7 @@
   },
   {
     "id": "2",
-    "image": "./src/assets/expresso-americano.svg",
+    "image": "/expresso-americano.svg",
     "type": ["tradicional"],
     "name": "Expresso Americano",
     "description": "Expresso diluído, menos intenso que o tradicional",
