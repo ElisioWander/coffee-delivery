@@ -9,7 +9,7 @@
   },
   {
     "id": "2",
-    "image": "/expresso-americano.svg",
+    "image": "./src/assets/expresso-americano.svg",
     "type": ["tradicional"],
     "name": "Expresso Americano",
     "description": "Expresso diluído, menos intenso que o tradicional",

@@ -1,6 +1,6 @@
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 import { CoffeeCard } from './Components/CoffeeCard'
-import coffeeData from '../../../coffee-data.json'
+import coffeeData from '../../coffee-data.json'
 
 import {
   CoffeeCardContainer,
