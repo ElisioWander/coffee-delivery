@@ -82,7 +82,7 @@ export function Checkout() {
 
   // etápa final do pedido
   // função para enviar o pedido
-  async function handleFinalizeOrder(data: FinalizeOrderData) {
+  function handleFinalizeOrder(data: FinalizeOrderData) {
     setIsLoading(true)
 
     const orderData = {

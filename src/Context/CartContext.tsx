@@ -1,16 +1,21 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react'
 import { FinalizeOrderData } from '../pages/Checkout'
+import { CardItemsData, CartReducer } from '../reducers/cart/reduce'
+import {
+  addCoffeeToCartAction,
+  deleteCoffeeFromCartAction,
+  getFinalizedOrderDataAction,
+  getSelectedPaymentMethodAction,
+  updateCoffeeInCartAction,
+} from '../reducers/cart/actions'
 
-type CardItemsData = {
-  id: string
-  image: string
-  name: string
-  amount: number
-  price: number
-  totalPrice: number
-}
-
-type UpdatedCoffee = {
+export type UpdatedCoffee = {
   id: string
   amount: number
   totalPrice: number
@@ -18,8 +23,8 @@ type UpdatedCoffee = {
 
 type CartContextData = {
   cartItems: CardItemsData[]
-  finalizedOrder: FinalizeOrderData
   paymentMethod: string
+  finalizedOrder: FinalizeOrderData
   addCoffeeToCart: (coffeeAdded: CardItemsData) => void
   updateCoffeeInCart: (updatedCoffee: UpdatedCoffee) => void
   deleteCoffeeFromCart: (deletedCoffeeId: string) => void
@@ -34,41 +39,56 @@ interface CartContextProviderProps {
 const CartContext = createContext({} as CartContextData)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cartItems, setCartItems] = useState<CardItemsData[]>([])
-  const [paymentMethod, setPaymentMethod] = useState('')
-  const [finalizedOrder, setFinalizedOrder] = useState({} as FinalizeOrderData)
+  const [cartState, dispatch] = useReducer(
+    CartReducer,
+    {
+      cartItems: [],
+      paymentMethod: '',
+      finalizedOrder: null,
+    },
+    () => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@coffee-club:cartState-1.0.0',
+      )
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      } else {
+        return {
+          cartItems: [],
+          paymentMethod: '',
+          finalizedOrder: null,
+        }
+      }
+    },
+  )
+
+  const { cartItems, paymentMethod, finalizedOrder } = cartState
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartState)
+
+    localStorage.setItem('@coffee-club:cartState-1.0.0', stateJSON)
+  }, [cartState])
 
   function addCoffeeToCart(coffeeAdded: CardItemsData) {
-    setCartItems((state) => [...state, coffeeAdded])
+    dispatch(addCoffeeToCartAction(coffeeAdded))
   }
 
   function updateCoffeeInCart(updatedCoffee: UpdatedCoffee) {
-    const { amount, id, totalPrice } = updatedCoffee
-
-    setCartItems((state) =>
-      state.map((coffee) => {
-        if (coffee.id === id) {
-          return { ...coffee, amount, totalPrice }
-        } else {
-          return coffee
-        }
-      }),
-    )
+    dispatch(updateCoffeeInCartAction(updatedCoffee))
   }
 
   function deleteCoffeeFromCart(deletedCoffeeId: string) {
-    setCartItems((state) =>
-      state.filter((coffee) => coffee.id !== deletedCoffeeId),
-    )
+    dispatch(deleteCoffeeFromCartAction(deletedCoffeeId))
   }
 
   function getSelectedPaymentMethod(payment: string) {
-    setPaymentMethod(payment)
+    dispatch(getSelectedPaymentMethodAction(payment))
   }
 
   function getFinalizedOrderData(data: FinalizeOrderData) {
-    setFinalizedOrder(data)
-    setCartItems([])
+    dispatch(getFinalizedOrderDataAction(data))
   }
 
   return (

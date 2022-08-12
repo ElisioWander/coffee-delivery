@@ -20,7 +20,7 @@ export function Success() {
 
   useEffect(() => {
     // impedindo o acesso a pagina de sucesso se nenhum pedido tiver sido finalizado
-    if (!finalizedOrder.cep) {
+    if (!finalizedOrder) {
       navigate('/')
     }
   }, [finalizedOrder, navigate])
@@ -39,11 +39,11 @@ export function Success() {
             <p>
               Entrega em{' '}
               <span>
-                <strong>{finalizedOrder.street}</strong>,{' '}
-                {finalizedOrder.number}
+                <strong>{finalizedOrder?.street}</strong>,{' '}
+                {finalizedOrder?.number}
                 <br />
-                {finalizedOrder.district} - {finalizedOrder.city},{' '}
-                {finalizedOrder.uf}
+                {finalizedOrder?.district} - {finalizedOrder?.city},{' '}
+                {finalizedOrder?.uf}
               </span>
             </p>
           </DeliveryDestination>
@@ -66,7 +66,7 @@ export function Success() {
             <p>
               Pagamento na entrega
               <br />
-              <strong>{finalizedOrder.payment}</strong>
+              <strong>{finalizedOrder?.payment}</strong>
             </p>
           </DeliveryPayment>
         </SuccessInfos>
