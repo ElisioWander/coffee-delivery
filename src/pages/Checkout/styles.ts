@@ -7,9 +7,13 @@ export const Form = styled.form`
 
   padding: 9rem 0;
 
-  @media (max-width: 658px) {
+  @media (max-width: 1136px) {
+    width: 85%;
+
     display: flex;
     flex-direction: column;
+
+    margin: 0 auto;
   }
 `
 

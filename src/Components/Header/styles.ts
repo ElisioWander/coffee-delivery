@@ -26,7 +26,7 @@ export const HeaderContent = styled.nav`
 `
 
 export const Actions = styled.div`
-  width: 13.0625rem;
+  min-width: 13.0625rem;
   height: 2.375rem;
 
   display: flex;

@@ -39,14 +39,17 @@ export function CartItem({ cart }: CartItemProps) {
   }
 
   function handleIncrementCoffeeAmount() {
-    setAmount(amount + 1)
+    // newAmount foi criado para armazenar o valor atualizado
+    // do estado 'amount' e enviar para a atualização do coffee no cart
+    const newAmount = amount + 1
+    setAmount(newAmount)
 
     // atualizando o preço total do café de acordo com a quantidade
     const newPrice = cart.totalPrice + cart.price
 
     const updateCartItem = {
       id: cart.id,
-      amount,
+      amount: newAmount,
       totalPrice: newPrice,
     }
 
@@ -55,14 +58,17 @@ export function CartItem({ cart }: CartItemProps) {
 
   function handleDecrementCoffeeAmount() {
     if (amount > 1) {
-      setAmount(amount - 1)
+      // newAmount foi criado para armazenar o valor atualizado
+      // do estado 'amount' e enviar para a atualização do coffee no cart
+      const newAmount = amount - 1
+      setAmount(newAmount)
 
       // atualizando o preço total do café de acordo com a quantidade
       const newPrice = cart.totalPrice - cart.price
 
       const updateCartItem = {
         id: cart.id,
-        amount,
+        amount: newAmount,
         totalPrice: newPrice,
       }
 

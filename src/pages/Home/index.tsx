@@ -27,7 +27,7 @@ export function Home() {
           </h1>
 
           <p>
-            Com o Coffee Delivery você recebe seu café onde <br /> estiver, a
+            Com o Coffee Club você recebe seu café onde <br /> estiver, a
             qualquer hora
           </p>
 

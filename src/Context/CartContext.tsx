@@ -5,8 +5,7 @@ import {
   useEffect,
   useReducer,
 } from 'react'
-import { FinalizeOrderData } from '../pages/Checkout'
-import { CardItemsData, CartReducer } from '../reducers/cart/reduce'
+
 import {
   addCoffeeToCartAction,
   deleteCoffeeFromCartAction,
@@ -14,6 +13,8 @@ import {
   getSelectedPaymentMethodAction,
   updateCoffeeInCartAction,
 } from '../reducers/cart/actions'
+import { FinalizeOrderData } from '../pages/Checkout'
+import { CardItemsData, CartReducer } from '../reducers/cart/reduce'
 
 export type UpdatedCoffee = {
   id: string

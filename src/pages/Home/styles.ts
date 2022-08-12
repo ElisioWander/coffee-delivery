@@ -12,6 +12,8 @@ export const IntroContainer = styled.main`
   gap: 3.5rem;
   padding: 5.75rem 0;
 
+  transition: all 0.2s linear;
+
   img {
     width: 100%;
     max-width: 29.75rem;
@@ -20,7 +22,7 @@ export const IntroContainer = styled.main`
     animation: go-back 1s;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1034px) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -35,6 +37,8 @@ export const IntroContainer = styled.main`
 
 export const IntroContent = styled.div`
   animation: go-ahead 1s;
+
+  transition: font-size 0.2s linear;
 
   h1 {
     font-family: 'Baloo 2', sans-serif;
@@ -52,7 +56,7 @@ export const IntroContent = styled.div`
     color: ${(props) => props.theme['gray-500']};
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1034px) {
     order: 2;
     animation: none;
 
@@ -142,5 +146,9 @@ export const CoffeeCardContainer = styled.div`
   @media (max-width: 658px) {
     display: flex;
     flex-direction: column;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
   }
 `

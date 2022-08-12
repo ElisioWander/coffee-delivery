@@ -25,7 +25,7 @@ export function Header() {
         <Actions>
           <Location>
             <MapPin size={22} />
-            Juiz de Fora, MG
+            Belo Horizonte, MG
           </Location>
           {cartItems.length === 0 ? (
             <NavLink to="/checkout">

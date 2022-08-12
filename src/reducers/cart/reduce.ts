@@ -12,6 +12,7 @@ export type CardItemsData = {
 
 type CartState = {
   cartItems: CardItemsData[]
+  coffeeAmount: number
   paymentMethod: string
   finalizedOrder: FinalizeOrderData | null
 }
