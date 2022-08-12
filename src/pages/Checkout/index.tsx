@@ -53,12 +53,14 @@ export function Checkout() {
       }, 0)
     : 1
 
-  const shipping = 4.8
+  const shipping = 3.5
   const total = totalPriceOfItems + shipping
 
-  // formatar os valores de frete e o total de itens comprados para reais R$
-  const { currencyFormatted: shippingFormatted } = useFormatter(shipping)
-  const { currencyFormatted: totalFormatted } = useFormatter(total)
+  // formatar os valores de frete, total dos items do carrinho somados e o total
+  // de itens comprados para reais R$
+  const { currency: totalOfItems } = useFormatter(totalPriceOfItems)
+  const { currency: shippingFormatted } = useFormatter(shipping)
+  const { currency: totalFormatted } = useFormatter(total)
 
   const isCartItemEmpty = cartItems.length === 0
 
@@ -126,7 +128,7 @@ export function Checkout() {
             <CalcTotalSection>
               <CalcTotalItens>
                 <span>Total de itens</span>
-                <span>{cartItems.length}</span>
+                <span>{totalOfItems}</span>
               </CalcTotalItens>
               <CalcTotalShipping>
                 <span>Entrega</span>
