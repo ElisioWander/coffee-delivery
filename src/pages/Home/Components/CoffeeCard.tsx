@@ -41,7 +41,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const coffeeTotalPrice = coffeePrice * amount
 
   // formatando o preço de unidade para reais R$
-  const { currencyFormatted: priceFormatted } = useFormatter(coffeePrice)
+  const { currency: priceFormatted } = useFormatter(coffeePrice)
 
   function handleAddCoffeeToCart() {
     if (coffeeAlreadyExists) {
