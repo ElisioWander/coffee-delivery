@@ -30,11 +30,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
   // estado inicial da quantidade de café do mesmo tipo
   const [amount, setAmount] = useState(1)
 
-  const { cartItems, addCoffeeToCart, updateCoffeeInCart } = useCart()
-
-  // buscando no array que armazena todos os itens que foram selecionados
-  // para verificar se o item que será adicionado já existe ou não
-  const coffeeAlreadyExists = cartItems.find((item) => item.id === coffee.id)
+  const { addCoffeeToCart } = useCart()
 
   // preço de unidade * quantidade = preço total
   const coffeePrice = coffee.price
@@ -44,30 +40,16 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const { currency: priceFormatted } = useFormatter(coffeePrice)
 
   function handleAddCoffeeToCart() {
-    if (coffeeAlreadyExists) {
-      // se o item já existir no carrinho de comprar então ele apenas
-      // será atualizado passando valores novos que podem ser alterados
-      const updatedCoffee = {
-        id: coffee.id,
-        amount,
-        price: coffee.price,
-        totalPrice: coffeeTotalPrice,
-      }
-
-      updateCoffeeInCart(updatedCoffee)
-    } else {
-      // enviar o item selecionado para o carrinho
-      const coffeeAdded = {
-        id: coffee.id,
-        image: coffee.image,
-        name: coffee.name,
-        amount,
-        price: coffee.price,
-        totalPrice: coffeeTotalPrice,
-      }
-
-      addCoffeeToCart(coffeeAdded)
+    const coffeeAdded = {
+      id: coffee.id,
+      image: coffee.image,
+      name: coffee.name,
+      amount,
+      price: coffee.price,
+      totalPrice: coffeeTotalPrice,
     }
+
+    addCoffeeToCart(coffeeAdded)
   }
 
   function handleIncrementCoffeeAmount() {

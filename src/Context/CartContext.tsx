@@ -25,7 +25,7 @@ export type UpdatedCoffee = {
 type CartContextData = {
   cartItems: CardItemsData[]
   paymentMethod: string
-  finalizedOrder: FinalizeOrderData
+  finalizedOrder: FinalizeOrderData | null
   addCoffeeToCart: (coffeeAdded: CardItemsData) => void
   updateCoffeeInCart: (updatedCoffee: UpdatedCoffee) => void
   deleteCoffeeFromCart: (deletedCoffeeId: string) => void
