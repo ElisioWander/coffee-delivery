@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { useValidation } from '../../hooks/useValidation'
-import { useFormatter } from '../../hooks/useFormatter'
 import { Loading } from '../../Components/Loading'
 
 import {
@@ -20,6 +18,8 @@ import {
   Form,
   FinalizeOrderButton,
 } from './styles'
+import { priceFormatter } from '../../utils/formatter'
+import { finalizeOrderSchemaValidation } from '../../utils/zodValidation'
 
 export type FinalizeOrderData = {
   cep: string
@@ -41,7 +41,6 @@ export function Checkout() {
   }, [])
 
   const { cartItems, paymentMethod, getFinalizedOrderData } = useCart()
-  const { finalizeOrderSchemaValidation } = useValidation()
 
   // um array com todos os totalPrice dos cafés que foram enviados para o carrinho
   const arrayTotalPriceOfItems = cartItems.map((item) => item.totalPrice)
@@ -58,9 +57,9 @@ export function Checkout() {
 
   // formatar os valores de frete, total dos items do carrinho somados e o total
   // de itens comprados para reais R$
-  const { currency: totalOfItems } = useFormatter(totalPriceOfItems)
-  const { currency: shippingFormatted } = useFormatter(shipping)
-  const { currency: totalFormatted } = useFormatter(total)
+  const totalOfItems = priceFormatter.format(totalPriceOfItems)
+  const shippingFormatted = priceFormatter.format(shipping)
+  const totalFormatted = priceFormatter.format(total)
 
   const isCartItemEmpty = cartItems.length === 0
 

@@ -1,7 +1,7 @@
 import { ShoppingCart, Plus, Minus } from 'phosphor-react'
 import { useState } from 'react'
 import { useCart } from '../../../Context/CartContext'
-import { useFormatter } from '../../../hooks/useFormatter'
+import { priceFormatter } from '../../../utils/formatter'
 
 import {
   AddCoffee,
@@ -33,11 +33,10 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const { addCoffeeToCart } = useCart()
 
   // preço de unidade * quantidade = preço total
-  const coffeePrice = coffee.price
-  const coffeeTotalPrice = coffeePrice * amount
+  const coffeeTotalPrice = coffee.price * amount
 
   // formatando o preço de unidade para reais R$
-  const { currency: priceFormatted } = useFormatter(coffeePrice)
+  const coffeePrice = priceFormatter.format(coffee.price)
 
   function handleAddCoffeeToCart() {
     const coffeeAdded = {
@@ -76,7 +75,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
       <p>{coffee.description}</p>
 
       <CardBuySection>
-        <Price>{priceFormatted}</Price>
+        <Price>{coffeePrice}</Price>
         <CoffeeAmount>
           <AddCoffee>
             <Minus
