@@ -1,12 +1,10 @@
-import { UpdatedCoffee } from '../../Context/CartContext'
-import { FinalizeOrderData } from '../../pages/Checkout'
+import { FinalizeOrderData, UpdatedCoffee } from '../../Context/CartContext'
 import { CardItemsData } from './reduce'
 
 export enum ActionType {
   ADD_COFFEE_TO_CART = 'ADD_COFFEE_TO_CART',
   UPDATE_COFFEE_IN_CART = 'UPDATE_COFFEE_IN_CART',
   DELETE_COFFEE_FROM_CART = 'DELETE_COFFEE_FROM_CART',
-  GET_SELECTED_PAYMENT_METHOD = 'GET_SELECTED_PAYMENT_METHOD',
   GET_FINALIZED_ORDER_DATA = 'GET_FINALIZED_ORDER_DATA',
 }
 
@@ -37,15 +35,6 @@ export function deleteCoffeeFromCartAction(deletedCoffeeId: string) {
     type: ActionType.DELETE_COFFEE_FROM_CART,
     payload: {
       deletedCoffeeId,
-    },
-  }
-}
-
-export function getSelectedPaymentMethodAction(payment: string) {
-  return {
-    type: ActionType.GET_SELECTED_PAYMENT_METHOD,
-    payload: {
-      payment,
     },
   }
 }

@@ -7,6 +7,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { Loading } from '../../Components/Loading'
+import { usePrices } from '../../hooks/usePrices'
+import {
+  FinalizeOrderData,
+  finalizeOrderSchemaValidation,
+} from '../../utils/zodValidation'
 
 import {
   CalcTotal,
@@ -18,19 +23,6 @@ import {
   Form,
   FinalizeOrderButton,
 } from './styles'
-import { finalizeOrderSchemaValidation } from '../../utils/zodValidation'
-import { usePrices } from '../../hooks/usePrices'
-
-export type FinalizeOrderData = {
-  cep: string
-  street: string
-  number: string
-  complement: string
-  district: string
-  city: string
-  uf: string
-  payment: string
-}
 
 export function Checkout() {
   const [isLoading, setIsLoading] = useState(false)
@@ -40,28 +32,19 @@ export function Checkout() {
     window.scroll(0, 0)
   }, [])
 
-  const { cartItems, paymentMethod, getFinalizedOrderData } = useCart()
+  const { cartItems, getFinalizedOrderData } = useCart()
   const { shippingFormatted, totalFormatted, totalOfItems } = usePrices()
-
-  const isCartItemEmpty = cartItems.length === 0
 
   // passando a validação do formuário
   // verificar validação no hook useValidation
   const finalizeOrderForm = useForm<FinalizeOrderData>({
     resolver: zodResolver(finalizeOrderSchemaValidation),
-    defaultValues: {
-      cep: '',
-      street: '',
-      number: '',
-      complement: '',
-      district: '',
-      city: '',
-      uf: '',
-      payment: '',
-    },
   })
 
-  const { handleSubmit } = finalizeOrderForm
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = finalizeOrderForm
 
   // etápa final do pedido
   // função para enviar o pedido
@@ -71,7 +54,6 @@ export function Checkout() {
     const orderData = {
       ...data,
       uf: data.uf.toUpperCase(),
-      payment: paymentMethod,
     }
 
     try {
@@ -86,6 +68,8 @@ export function Checkout() {
       navigate('/')
     }
   }
+
+  const isCartItemEmpty = cartItems.length === 0 || isSubmitting
 
   return (
     <>

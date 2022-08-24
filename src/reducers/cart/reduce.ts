@@ -1,6 +1,6 @@
-import { FinalizeOrderData } from '../../pages/Checkout'
 import { ActionType } from './actions'
 import produce from 'immer'
+import { FinalizeOrderData } from '../../Context/CartContext'
 
 export type CardItemsData = {
   id: string
@@ -14,14 +14,12 @@ export type CardItemsData = {
 type CartState = {
   cartItems: CardItemsData[]
   coffeeAmount: number
-  paymentMethod: string
   finalizedOrder: FinalizeOrderData | null
 }
 
 const INITIAL_STATE: CartState = {
   cartItems: [],
   coffeeAmount: 1,
-  paymentMethod: '',
   finalizedOrder: null,
 }
 
@@ -73,11 +71,6 @@ export function CartReducer(state = INITIAL_STATE, action: any) {
 
         break
       }
-
-      case ActionType.GET_SELECTED_PAYMENT_METHOD:
-        draft.paymentMethod = action.payload.payment
-
-        break
 
       case ActionType.GET_FINALIZED_ORDER_DATA:
         draft.cartItems = []

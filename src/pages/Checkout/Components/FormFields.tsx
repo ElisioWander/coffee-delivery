@@ -1,3 +1,7 @@
+import { FormFieldsTitle } from './FormFieldsTitle'
+import { Controller, useFormContext } from 'react-hook-form'
+import { InputForm } from './InputForm'
+import { FinalizeOrderData } from '../../../utils/zodValidation'
 import {
   Bank,
   CreditCard,
@@ -5,11 +9,6 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
-import { FormFieldsTitle } from './FormFieldsTitle'
-import { PaymentButton } from './PaymentButton'
-import { useFormContext } from 'react-hook-form'
-import { FinalizeOrderData } from '../index'
-import { InputForm } from './InputForm'
 
 import {
   FormFieldsContainer,
@@ -18,29 +17,16 @@ import {
   InputGrup,
   InputGrupFlex,
   InputGrupGrid,
+  PaymentButton,
   PaymentMethod,
+  PaymentMethodErrorMessage,
   PaymentMethodSection,
 } from './StylesFormFields'
-
-// todas as formas de pagamento do café
-const payment = [
-  {
-    icon: <CreditCard />,
-    type: 'Cartão de crédito',
-  },
-  {
-    icon: <Bank />,
-    type: 'Cartão de débito',
-  },
-  {
-    icon: <Money />,
-    type: 'Dinheiro',
-  },
-]
 
 export function FormFields() {
   const {
     register,
+    control,
     formState: { errors },
   } = useFormContext<FinalizeOrderData>()
 
@@ -113,15 +99,36 @@ export function FormFields() {
             icon={<CurrencyDollar size={22} color="#8047F8" />}
           />
 
-          <PaymentMethod>
-            {payment.map((method) => (
-              <PaymentButton
-                key={method.type}
-                icon={method.icon}
-                payment={method.type}
-              />
-            ))}
-          </PaymentMethod>
+          <Controller
+            control={control}
+            name="paymentType"
+            render={({ field }) => {
+              return (
+                <PaymentMethod
+                  onValueChange={field.onChange}
+                  value={field.value}
+                >
+                  <PaymentButton value="Cartão de crédito">
+                    <CreditCard />
+                    Cartão de crédito
+                  </PaymentButton>
+                  <PaymentButton value="Cartão de débito">
+                    <Bank />
+                    Cartão de débito
+                  </PaymentButton>
+                  <PaymentButton value="Dinheiro">
+                    <Money />
+                    Dinheiro
+                  </PaymentButton>
+                  {errors.paymentType && (
+                    <PaymentMethodErrorMessage>
+                      Escolha o meio de pagamento
+                    </PaymentMethodErrorMessage>
+                  )}
+                </PaymentMethod>
+              )
+            }}
+          />
         </PaymentMethodSection>
       </FormFieldsContent>
     </FormFieldsContainer>

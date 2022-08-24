@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export const FormFieldsContainer = styled.div`
   > span {
@@ -92,7 +93,7 @@ export const PaymentMethodSection = styled.section`
   }
 `
 
-export const PaymentMethod = styled.div`
+export const PaymentMethod = styled(RadioGroup.Root)`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
@@ -101,4 +102,46 @@ export const PaymentMethod = styled.div`
     display: flex;
     flex-direction: column;
   }
+`
+
+export const PaymentButton = styled(RadioGroup.Item)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+
+  padding: 1rem;
+
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  color: ${(props) => props.theme['gray-400']};
+  background-color: ${(props) => props.theme['white-500']};
+
+  transition: all 0.1s;
+
+  &:hover {
+    color: ${(props) => props.theme['gray-500']};
+    background-color: ${(props) => props.theme['white-600']};
+  }
+
+  :focus {
+    outline: 0;
+    border: 1px solid ${(props) => props.theme['purple-500']};
+  }
+
+  svg {
+    font-size: 1rem;
+    color: ${(props) => props.theme['purple-500']};
+  }
+`
+
+export const PaymentMethodErrorMessage = styled.span`
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  color: ${(props) => props.theme['red-100']};
 `

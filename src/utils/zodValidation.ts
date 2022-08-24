@@ -14,5 +14,7 @@ export const finalizeOrderSchemaValidation = zod.object({
   district: zod.string().min(1, { message: 'Nome do bairro é obrigatório' }),
   city: zod.string().min(1, { message: 'Nome da cidade é obrigatório' }),
   uf: zod.string().min(1, { message: 'Obrigatório' }),
-  payment: zod.string(),
+  paymentType: zod.enum(['Cartão de crédito', 'Cartão de débito', 'Dinheiro']),
 })
+
+export type FinalizeOrderData = zod.infer<typeof finalizeOrderSchemaValidation>

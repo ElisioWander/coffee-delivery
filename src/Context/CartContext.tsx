@@ -10,10 +10,8 @@ import {
   addCoffeeToCartAction,
   deleteCoffeeFromCartAction,
   getFinalizedOrderDataAction,
-  getSelectedPaymentMethodAction,
   updateCoffeeInCartAction,
 } from '../reducers/cart/actions'
-import { FinalizeOrderData } from '../pages/Checkout'
 import { CardItemsData, CartReducer } from '../reducers/cart/reduce'
 
 export type UpdatedCoffee = {
@@ -22,14 +20,23 @@ export type UpdatedCoffee = {
   totalPrice: number
 }
 
+export type FinalizeOrderData = {
+  number: string
+  cep: string
+  street: string
+  complement: string
+  district: string
+  city: string
+  uf: string
+  paymentType: 'Cartão de crédito' | 'Cartão de débito' | 'Dinheiro'
+}
+
 type CartContextData = {
   cartItems: CardItemsData[]
-  paymentMethod: string
   finalizedOrder: FinalizeOrderData | null
   addCoffeeToCart: (coffeeAdded: CardItemsData) => void
   updateCoffeeInCart: (updatedCoffee: UpdatedCoffee) => void
   deleteCoffeeFromCart: (deletedCoffeeId: string) => void
-  getSelectedPaymentMethod: (payment: string) => void
   getFinalizedOrderData: (data: FinalizeOrderData) => void
 }
 
@@ -44,7 +51,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     CartReducer,
     {
       cartItems: [],
-      paymentMethod: '',
       finalizedOrder: null,
     },
     () => {
@@ -57,14 +63,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       } else {
         return {
           cartItems: [],
-          paymentMethod: '',
           finalizedOrder: null,
         }
       }
     },
   )
 
-  const { cartItems, paymentMethod, finalizedOrder } = cartState
+  const { cartItems, finalizedOrder } = cartState
 
   useEffect(() => {
     const stateJSON = JSON.stringify(cartState)
@@ -84,10 +89,6 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(deleteCoffeeFromCartAction(deletedCoffeeId))
   }
 
-  function getSelectedPaymentMethod(payment: string) {
-    dispatch(getSelectedPaymentMethodAction(payment))
-  }
-
   function getFinalizedOrderData(data: FinalizeOrderData) {
     dispatch(getFinalizedOrderDataAction(data))
   }
@@ -96,12 +97,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     <CartContext.Provider
       value={{
         cartItems,
-        paymentMethod,
         finalizedOrder,
         addCoffeeToCart,
         updateCoffeeInCart,
         deleteCoffeeFromCart,
-        getSelectedPaymentMethod,
         getFinalizedOrderData,
       }}
     >

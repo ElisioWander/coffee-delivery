@@ -66,7 +66,7 @@ export function Success() {
             <p>
               Pagamento na entrega
               <br />
-              <strong>{finalizedOrder?.payment}</strong>
+              <strong>{finalizedOrder?.paymentType}</strong>
             </p>
           </DeliveryPayment>
         </SuccessInfos>
