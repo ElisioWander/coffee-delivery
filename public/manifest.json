@@ -1,0 +1,13 @@
+{
+  "background_color": "#dbac2c",
+  "description": "Desenvolvedor Web - Front-end HTML5, CSS3, SASS, TailwindCSS, Javascript, React, Next, Typescript",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "elisiowander.vercel",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "elisiowander.vercel",
+  "start_url": "/",
+  "theme_color": "#dbac2c",
+  "lang": "pt"
+}
